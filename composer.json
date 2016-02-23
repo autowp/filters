@@ -11,6 +11,7 @@
     ],
     "minimum-stability": "beta",
     "require": {
+        "php": ">=5.5.0",
         "ext-iconv": "*",
         "ext-mbstring": "*",
         "zendframework/zend-filter": "2.*"

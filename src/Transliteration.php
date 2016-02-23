@@ -2,12 +2,12 @@
 
 namespace Autowp\Filter;
 
-use Zend_Filter_Interface;
+use Zend\Filter\FilterInterface;
 
-class Transliteration implements Zend_Filter_Interface
+class Transliteration implements FilterInterface
 {
     /**
-     * Defined by Zend_Filter_Interface
+     * Defined by FilterInterface
      *
      * Returns $value translitered to ASCII
      *

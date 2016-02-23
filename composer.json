@@ -11,11 +11,21 @@
     ],
     "minimum-stability": "beta",
     "require": {
-        "zendframework/zendframework1": "1.*"
+        "ext-iconv": "*",
+        "ext-mbstring": "*",
+        "zendframework/zend-filter": "2.*"
+    },
+    "require-dev": {
+        "phpunit/PHPUnit": "~4.0"
     },
     "autoload": {
         "psr-4": {
             "Autowp\\Filter\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Autowp\\Filter\\": "test/"
         }
     }
 }

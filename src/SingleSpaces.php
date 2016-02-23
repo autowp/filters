@@ -2,9 +2,9 @@
 
 namespace Autowp\Filter;
 
-use Zend_Filter_Interface;
+use Zend\Filter\FilterInterface;
 
-class SingleSpaces implements Zend_Filter_Interface
+class SingleSpaces implements FilterInterface
 {
     public function filter($value)
     {

@@ -2,12 +2,12 @@
 
 namespace Autowp\Filter\Filename;
 
-use Zend_Filter_Interface;
+use Zend\Filter\FilterInterface;
 use Autowp\Filter\Transliteration;
 
-class Safe implements Zend_Filter_Interface
+class Safe implements FilterInterface
 {
-    protected $_replace = array (
+    private $_replace = array (
         "№" => "N",
         " " => '_',
         '"' => '_',
@@ -37,7 +37,7 @@ class Safe implements Zend_Filter_Interface
 
 
     /**
-     * Defined by Zend_Filter_Interface
+     * Defined by FilterInterface
      *
      * @param  string $value
      * @return string

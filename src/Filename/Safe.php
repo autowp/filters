@@ -7,7 +7,7 @@ use Autowp\Filter\Transliteration;
 
 class Safe implements FilterInterface
 {
-    private $_replace = array (
+    private $replaces = array (
         "№" => "N",
         " " => '_',
         '"' => '_',
@@ -35,7 +35,6 @@ class Safe implements FilterInterface
         '-' => '-',
     );
 
-
     /**
      * Defined by FilterInterface
      *
@@ -49,7 +48,7 @@ class Safe implements FilterInterface
         $value = $transliteration->filter($value);
         $value = mb_strtolower($value);
 
-        $value = strtr($value, $this->_replace);
+        $value = strtr($value, $this->replaces);
 
         $value = trim($value, '_-');
 

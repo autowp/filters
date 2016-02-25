@@ -8,8 +8,9 @@ class SingleSpaces implements FilterInterface
 {
     public function filter($value)
     {
-        if (strlen($value) <= 0)
+        if (strlen($value) <= 0) {
             return '';
+        }
 
         $value = str_replace("\r", "", $value);
         $lines = explode("\n", $value);

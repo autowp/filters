@@ -6,3 +6,6 @@ php:
   - hhvm
   - nightly
 before_script: composer install --dev
+addons:
+    code_climate:
+        repo_token: 96997d86ef4df54d3feb0edf486ef47f0fcad41ca06849b5088e0d2d66d7a3b3

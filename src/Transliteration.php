@@ -17,15 +17,15 @@ class Transliteration implements FilterInterface
     public function filter($value)
     {
         //translitere specific chars
-        $value = $this->_transliterateCzech($value);
-        $value = $this->_transliterateSlovak($value);
-        $value = $this->_transliterateRussian($value);
-        $value = $this->_transliterateGerman($value);
-        $value = $this->_transliterateFrench($value);
-        $value = $this->_transliterateHungarian($value);
-        $value = $this->_transliteratePolish($value);
-        $value = $this->_transliterateDanish($value);
-        $value = $this->_transliterateCroatian($value);
+        $value = $this->transliterateCzech($value);
+        $value = $this->transliterateSlovak($value);
+        $value = $this->transliterateRussian($value);
+        $value = $this->transliterateGerman($value);
+        $value = $this->transliterateFrench($value);
+        $value = $this->transliterateHungarian($value);
+        $value = $this->transliteratePolish($value);
+        $value = $this->transliterateDanish($value);
+        $value = $this->transliterateCroatian($value);
 
         //split string to single characters
         $characters = mb_split("~(.)~", $value);
@@ -37,10 +37,10 @@ class Transliteration implements FilterInterface
 
             //if character was converted, strip out wrong marks
             if ($character !== $converted) {
-                $return .= preg_replace('~["\'^]+~', '', $converted);
-            } else {
-                $return .= $converted;
+                $converted = preg_replace('~["\'^]+~', '', $converted);
             }
+            
+            $return .= $converted;
         }
         return $return;
     }
@@ -48,10 +48,10 @@ class Transliteration implements FilterInterface
     /**
      * Transliterate Russian chars (Cyrillic)
      *
-     * @param string $s
+     * @param string $value
      * @return string
      */
-    private function _transliterateRussian ($s)
+    private function transliterateRussian ($value)
     {
         $table = array (
             "А" => "A",
@@ -127,16 +127,16 @@ class Transliteration implements FilterInterface
             "ґ" => "g",
             "ї" => "i"
         );
-        return strtr($s, $table);
+        return strtr($value, $table);
     }
 
   	/**
      * Transliterate Czech chars
      *
-     * @param string $s
+     * @param string $value
      * @return string
      */
-    private function _transliterateCzech ($s)
+    private function transliterateCzech ($value)
     {
         $table = array (
             'á' => 'a',
@@ -170,16 +170,16 @@ class Transliteration implements FilterInterface
             'Ý' => 'Y',
             'Ž' => 'Z',
         );
-        return strtr($s, $table);
+        return strtr($value, $table);
     }
 
 	/**
      * Transliterate German chars
      *
-     * @param string $s
+     * @param string $value
      * @return string
      */
-    private function _transliterateGerman ($s)
+    private function transliterateGerman ($value)
     {
         $table = array (
             //'ä' => 'ae', //messes up with slovak -> they have ä -> a
@@ -194,16 +194,16 @@ class Transliteration implements FilterInterface
             'Ü' => 'Ue',
             'ß' => 'ss',
         );
-        return strtr($s, $table);
+        return strtr($value, $table);
     }
 
 	/**
      * Transliterate French chars
      *
-     * @param string $s
+     * @param string $value
      * @return string
      */
-    private function _transliterateFrench ($s)
+    private function transliterateFrench ($value)
     {
         $table = array (
             'â' => 'a',
@@ -222,16 +222,16 @@ class Transliteration implements FilterInterface
             'ç' => 'c',
             'Ç' => 'C',
         );
-        return strtr($s, $table);
+        return strtr($value, $table);
     }
 
 	/**
      * Transliterate Hungarian chars
      *
-     * @param string $s
+     * @param string $value
      * @return string
      */
-    private function _transliterateHungarian ($s)
+    private function transliterateHungarian ($value)
     {
         $table = array (
             'á' => 'a',
@@ -244,16 +244,16 @@ class Transliteration implements FilterInterface
             'ü' => 'u',
             'ű' => 'u',
         );
-        return strtr($s, $table);
+        return strtr($value, $table);
     }
 
     /**
      * Transliterate Polish chars
      *
-     * @param string $s
+     * @param string $value
      * @return string
      */
-    private function _transliteratePolish ($s)
+    private function transliteratePolish ($value)
     {
         $table = array(
             'ą' => 'a',
@@ -272,16 +272,16 @@ class Transliteration implements FilterInterface
             'Ż' => 'Z',
             'Ź' => 'Z'
         );
-        return strtr($s, $table);
+        return strtr($value, $table);
     }
 
 	/**
      * Transliterate Danish chars
      *
-     * @param string $s
+     * @param string $value
      * @return string
      */
-    private function _transliterateDanish ($s)
+    private function transliterateDanish ($value)
     {
         $table = array(
             'æ' => 'ae',
@@ -291,16 +291,16 @@ class Transliteration implements FilterInterface
             'Ø' => 'Oe',
             'Å' => 'Aa'
         );
-        return strtr($s, $table);
+        return strtr($value, $table);
     }
 
  	/**
      * Transliterate Croatian chars
      *
-     * @param string $s
+     * @param string $value
      * @return string
      */
-    private function _transliterateCroatian ($s)
+    private function transliterateCroatian ($value)
     {
         $table = array (
             'Č' => 'C',
@@ -314,16 +314,16 @@ class Transliteration implements FilterInterface
             'š' => 's',
             'đ' => 'd',
         );
-        return strtr($s, $table);
+        return strtr($value, $table);
     }
 
 	/**
      * Transliterate Slovak chars
      *
-     * @param string $s
+     * @param string $value
      * @return string
      */
-    private function _transliterateSlovak ($s)
+    private function transliterateSlovak ($value)
     {
         $table = array (
             'á' => 'a',
@@ -361,6 +361,6 @@ class Transliteration implements FilterInterface
             'ž' => 'z',
             'Ž' => 'Z',
         );
-        return strtr($s, $table);
+        return strtr($value, $table);
     }
 }

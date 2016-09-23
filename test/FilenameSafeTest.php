@@ -18,7 +18,7 @@ class FilenameSafeTest extends \PHPUnit_Framework_TestCase
         $result = $filter->filter($text);
         $this->assertEquals($expected, $result);
     }
- 
+
     public static function correctProvider()
     {
         return [
@@ -29,6 +29,8 @@ class FilenameSafeTest extends \PHPUnit_Framework_TestCase
             ['', '_'],
             ['just test', 'just_test'],
             ['просто тест ', 'prosto_test'],
+            ['数据库', 'shu_ju_ku'],
+            ['Škoda', 'skoda']
         ];
     }
 }

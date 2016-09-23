@@ -18,11 +18,13 @@ class TransliterationTest extends \PHPUnit_Framework_TestCase
         $result = $filter->filter($text);
         $this->assertEquals($expected, $result);
     }
- 
+
     public static function correctProvider()
     {
         return [
-            ['абвгдеёжзиклмнопрстуфх ц ч ш щ ъыь эюя', 'abvgdeezhziklmnoprstufkh ts ch sh shch y eyuya']
+            ['абвгдеёжзиклмнопрстуфх ц ч ш щ ъыь эюя', 'abvgdeezziklmnoprstufh c c s s "y\' eua'],
+            ['Škoda', 'Skoda'],
+            ['数据库', 'shu ju ku'],
         ];
     }
 }
